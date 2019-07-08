@@ -45,8 +45,8 @@ class RealmManager {
         return resultMovies
     }
     
-    func dbGetMovie(_ id: Int)-> Movie {
-        let oMovie = realm.objects(MovieObject.self).filter("id = '\(id)'").first!
+    func dbGetMovie(_ id: Int)-> Movie? {
+        guard let oMovie = realm.objects(MovieObject.self).filter("id = '\(id)'").first else { return nil }
         let nMovie = RealmManager.get.mapMovie(oMovie)
         return nMovie
     }

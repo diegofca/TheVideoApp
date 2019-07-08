@@ -24,10 +24,18 @@ class BaseViewController: UIViewController {
     
     
     func alertError(tittle: String, body: String,_ handler:(Void)?){
-        let alert = UIAlertController(title: tittle, message: body, preferredStyle: .alert)
-       // let action = UIAlertAction(title: "Aceptar", style: .default, handler: handler)
-       // alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        let alertController = UIAlertController(title: tittle, message: body, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func creatingSearhBarToTable() -> UISearchController {
+        let searchController : UISearchController!
+        searchController = UISearchController(searchResultsController: nil)
+        searchController?.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.tintColor = .red
+        searchController.searchBar.placeholder = "Busca tu pelicula favorita"
+        return searchController
     }
     
 }

@@ -17,12 +17,10 @@ class PopularListInteractor {
     
     private let serviceManager = ListServicesManager.get
     private let realmManager = RealmManager.get
-
     
     var delegate: PopularListProtocol?
     
     func getPopularList(page: Int = 1, success:@escaping ([Movie]) -> Void, failure:@escaping (Error) -> Void){
-        
         if Connectivity.isConnectedToInternet {
             serviceManager.requestPopularList(page: page, success: { movies in
                 self.saveMovies(movies)
@@ -32,7 +30,6 @@ class PopularListInteractor {
             }
             return
         }
-        
         getPopularListToDb()
     }
     
@@ -42,7 +39,6 @@ class PopularListInteractor {
         }
     }
     
-    
     func saveMovies(_ list: [Movie]){
         for nMovie in list {
             let oMovie = realmManager.mapMovieObject(nMovie)
@@ -51,8 +47,4 @@ class PopularListInteractor {
             }
         }
     }
-    
-    
-    
-    
 }

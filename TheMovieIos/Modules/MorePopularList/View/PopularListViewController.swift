@@ -7,6 +7,7 @@ import UIKit
 class PopularListViewController: BaseViewController {
     
     @IBOutlet weak var moviesCollection: UICollectionView!
+    var searchController : UISearchController!
     
     lazy var presenter: PopularListPresenter = {
         return PopularListPresenter()
@@ -29,6 +30,12 @@ class PopularListViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         moviesCollection.collectionViewLayout = layout
+        
+        searchController = creatingSearhBarToTable()
+        searchController.searchBar.scopeButtonTitles = ["Spiderman", "Harry Potter", "Cars", "All"]
+        searchController.searchBar.delegate = self
+        
+        navigationItem.searchController = searchController
     }
 
     private func initDataListener(){
@@ -38,8 +45,8 @@ class PopularListViewController: BaseViewController {
         }
         
         presenter.listenerError = {  [weak self] error in
-           // guard let strongSelf = self else { return }
-         //   alertError(tittle: "Error en la descarga", body: ":c", nil)
+            guard let strongSelf = self else { return }
+            strongSelf.alertError(tittle: "Error en la descarga", body: ":c", nil)
         }
         
     }
@@ -80,5 +87,29 @@ extension PopularListViewController : UICollectionViewDelegate, UICollectionView
         }
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension PopularListViewController : UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        searchBar.endEditing(true)
+        searchController.dismiss(animated: true, completion: nil)
+//        self.viewModel.filteredMovies.removeAll(keepingCapacity: true)
+//        self.viewModel.activeSearch = false
+//        self.tableMoviesPopular.reloadData()
+    }
+    
+    //Delegado del boton buscar del Searchbar
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+        searchController.dismiss(animated: true, completion: nil)
+        self.moviesCollection.reloadData()
+    }
 }
 

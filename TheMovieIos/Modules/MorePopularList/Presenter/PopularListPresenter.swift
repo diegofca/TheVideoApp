@@ -16,6 +16,7 @@ class PopularListPresenter {
     //variables
     private var movies = [Movie]()
     private var page: Int = 1
+    private var localMovies: Bool = false
     
     //closureReactive
     var listenerMovies: (([Movie])-> Void)?
@@ -38,7 +39,9 @@ class PopularListPresenter {
 
 extension PopularListPresenter : PopularListProtocol {
     func getMoviesToLocalDb(_ movies: [Movie]) {
+        guard !localMovies else { return }
         self.listenerMovies?(movies)
         self.movies = movies
+        self.localMovies = !localMovies
     }
 }

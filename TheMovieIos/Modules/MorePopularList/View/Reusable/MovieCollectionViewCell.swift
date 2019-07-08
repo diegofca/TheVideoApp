@@ -17,19 +17,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setImageCell(pathUrl: String?){
-        if Connectivity.isConnectedToInternet {
-            let urlSize = String(format: ApiEndPoints.IMG_BASEURL, sizePoster)
-            let urlPathImage = "\(urlSize)\(pathUrl ?? "")"
-            guard let url = URL(string: urlPathImage) else { return }
-            self.imageView.af_setImage(withURL: url,
-                                       placeholderImage: UIImage(named: "crispetas"),
-                                       imageTransition: UIImageView.ImageTransition.crossDissolve(1) ,
-                                       runImageTransitionIfCached: false) { response in
-            }
+        self.imageView.image = UIImage(named: "crispetas")
+        let urlSize = String(format: ApiEndPoints.IMG_BASEURL, sizePoster)
+        let urlPathImage = "\(urlSize)\(pathUrl ?? "")"
+        guard let url = URL(string: urlPathImage) else { return }
+        self.imageView.af_setImage(withURL: url,
+                                   imageTransition: UIImageView.ImageTransition.crossDissolve(0.5) ,
+                                   runImageTransitionIfCached: false) { response in
         }
     }
 
