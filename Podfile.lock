@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - lottie-ios (3.1.1)
+  - ObjectMapper (3.5.1)
+  - Realm (3.17.0):
+    - Realm/Headers (= 3.17.0)
+  - Realm/Headers (3.17.0)
+  - RealmSwift (3.17.0):
+    - Realm (= 3.17.0)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - AlamofireObjectMapper (~> 5.0)
+  - lottie-ios
+  - RealmSwift
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - AlamofireObjectMapper
+    - lottie-ios
+    - ObjectMapper
+    - Realm
+    - RealmSwift
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  lottie-ios: 43a472d22b2dd2bed292cc4010c0b4d2e66d3ba8
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  Realm: b30db41ff34fc858ffc25ba8d44a82c164e7ccd0
+  RealmSwift: fe733e459d60dc7b6971d4cbee2eb4854097d12c
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 96ee353d6a1dec78351bfae0f095bd963722b2c6
+
+COCOAPODS: 1.7.3

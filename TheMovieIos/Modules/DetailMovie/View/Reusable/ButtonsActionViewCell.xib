@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="KGk-i7-Jjw" customClass="ButtonsActionViewCell" customModule="TheMovieIos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Muo-Ue-3lv">
+                        <rect key="frame" x="55" y="10" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Muo-Ue-3lv" secondAttribute="height" multiplier="1:1" id="5FG-TZ-wcI"/>
+                        </constraints>
+                        <state key="normal" image="ic_my_list"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbV-ps-pE4">
+                        <rect key="frame" x="145" y="10" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="YbV-ps-pE4" secondAttribute="height" multiplier="1:1" id="AsZ-K2-x6P"/>
+                            <constraint firstAttribute="height" constant="30" id="rWK-Ct-2Zy"/>
+                        </constraints>
+                        <state key="normal" image="ic_rate"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOQ-Nh-nm3">
+                        <rect key="frame" x="235" y="10" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="WOQ-Nh-nm3" secondAttribute="height" multiplier="1:1" id="go7-Jm-2Up"/>
+                        </constraints>
+                        <state key="normal" image="ic_compartir"/>
+                    </button>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0V6-BK-Fwe">
+                        <rect key="frame" x="16" y="0.0" width="288" height="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="5Uc-SA-sp7"/>
+                        </constraints>
+                    </view>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUe-Xd-oeR">
+                        <rect key="frame" x="16" y="59" width="288" height="1"/>
+                        <color key="backgroundColor" red="0.90588235289999997" green="0.59607843140000005" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="XkQ-yl-9kI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="0V6-BK-Fwe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0fK-na-5y5"/>
+                    <constraint firstItem="IUe-Xd-oeR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1Mn-h8-Wyx"/>
+                    <constraint firstItem="Muo-Ue-3lv" firstAttribute="height" secondItem="YbV-ps-pE4" secondAttribute="height" id="Jee-eh-3Pw"/>
+                    <constraint firstItem="WOQ-Nh-nm3" firstAttribute="centerY" secondItem="YbV-ps-pE4" secondAttribute="centerY" id="MpK-Fy-YNX"/>
+                    <constraint firstItem="WOQ-Nh-nm3" firstAttribute="leading" secondItem="YbV-ps-pE4" secondAttribute="trailing" constant="60" id="Tc0-yS-eD5"/>
+                    <constraint firstItem="WOQ-Nh-nm3" firstAttribute="height" secondItem="YbV-ps-pE4" secondAttribute="height" id="YAY-sB-dDI"/>
+                    <constraint firstItem="YbV-ps-pE4" firstAttribute="leading" secondItem="Muo-Ue-3lv" secondAttribute="trailing" constant="60" id="YSw-3C-Y2P"/>
+                    <constraint firstItem="YbV-ps-pE4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="cD5-2A-oVj"/>
+                    <constraint firstItem="Muo-Ue-3lv" firstAttribute="centerY" secondItem="YbV-ps-pE4" secondAttribute="centerY" id="dPI-JG-Rc7"/>
+                    <constraint firstItem="YbV-ps-pE4" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fi4-nL-1tb"/>
+                    <constraint firstItem="IUe-Xd-oeR" firstAttribute="bottom" secondItem="YbV-ps-pE4" secondAttribute="bottom" constant="20" id="fkd-va-Hk4"/>
+                    <constraint firstAttribute="bottom" secondItem="IUe-Xd-oeR" secondAttribute="bottom" constant="8" id="gGT-YA-ehs"/>
+                    <constraint firstAttribute="trailing" secondItem="IUe-Xd-oeR" secondAttribute="trailing" constant="16" id="iy9-Bf-thz"/>
+                    <constraint firstItem="YbV-ps-pE4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="to1-yu-BTJ"/>
+                    <constraint firstItem="0V6-BK-Fwe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="yXF-h7-8ur"/>
+                    <constraint firstAttribute="trailing" secondItem="0V6-BK-Fwe" secondAttribute="trailing" constant="16" id="zF9-B2-AkM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="133.33333333333334" y="97.767857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_compartir" width="256" height="256"/>
+        <image name="ic_my_list" width="256" height="256"/>
+        <image name="ic_rate" width="256" height="256"/>
+    </resources>
+</document>
