@@ -42,24 +42,54 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="FSo-9X-PsD"/>
                                 </connections>
                             </collectionView>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-Ry-CNv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvU-Mc-uz5">
+                                        <rect key="frame" x="16" y="8" width="382" height="30"/>
+                                        <color key="backgroundColor" red="0.36031142980000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Limpiar filtro">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="NvU-Mc-uz5" firstAttribute="leading" secondItem="lbl-Ry-CNv" secondAttribute="leading" constant="16" id="EEL-sc-rSy"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="NvU-Mc-uz5" secondAttribute="bottom" priority="750" constant="8" id="HHM-ES-YWY"/>
+                                    <constraint firstItem="NvU-Mc-uz5" firstAttribute="top" secondItem="lbl-Ry-CNv" secondAttribute="top" priority="750" constant="8" id="Swd-Cx-D0h"/>
+                                    <constraint firstAttribute="trailing" secondItem="NvU-Mc-uz5" secondAttribute="trailing" constant="16" id="cqH-d0-mFx"/>
+                                    <constraint firstAttribute="height" id="dnb-xC-N0a"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lbl-Ry-CNv" secondAttribute="trailing" id="1Dl-v1-Jir"/>
+                            <constraint firstItem="VZa-9U-TwF" firstAttribute="top" secondItem="lbl-Ry-CNv" secondAttribute="bottom" id="WX2-HJ-3Ti"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VZa-9U-TwF" secondAttribute="trailing" id="aow-3K-2lD"/>
-                            <constraint firstItem="VZa-9U-TwF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hyP-bE-Z8X"/>
+                            <constraint firstItem="lbl-Ry-CNv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bFK-Le-ey8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VZa-9U-TwF" secondAttribute="bottom" id="luC-EM-BsE"/>
+                            <constraint firstItem="lbl-Ry-CNv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ocU-mv-5vb"/>
                             <constraint firstItem="VZa-9U-TwF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zdo-ZR-vod"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="1a7-5e-oSR"/>
                     <connections>
+                        <outlet property="cleanFiltersBtn" destination="NvU-Mc-uz5" id="820-0J-dF5"/>
+                        <outlet property="cleanFiltersBtnCtr" destination="dnb-xC-N0a" id="tt6-d6-ZyD"/>
                         <outlet property="moviesCollection" destination="VZa-9U-TwF" id="KOQ-cG-aph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="21"/>
+            <point key="canvasLocation" x="285.50724637681162" y="20.758928571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rcG-Ym-Kwd">

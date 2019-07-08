@@ -17,13 +17,26 @@ class PopularListPresenter {
     private var movies = [Movie]()
     private var page: Int = 1
     private var localMovies: Bool = false
+    private var isSearchMovies: Bool = false
+    private var heightClearFilterBtn: Int = 50
     
     //closureReactive
     var listenerMovies: (([Movie])-> Void)?
     var listenerError: ((Error) -> Void)?
+    var listenerEnableClearButtonFilter: ((Int) -> Void)?
+    var listenerClearSerchText: (() -> Void)?
     
     init() {
         workerInteractor.delegate = self
+    }
+    
+    func getSearchedMovies(query: String){
+        workerInteractor.getSearchedList(query: query, success: { filterMovies in
+            self.listenerMovies?(filterMovies)
+        }) { error in
+             self.listenerError?(error)
+        }
+        setSearchStatus(true)
     }
 
     func getPopularList(){
@@ -34,6 +47,26 @@ class PopularListPresenter {
         }) { error in
             self.listenerError?(error)
         }
+    }
+    
+    func getPaginationMovies(){
+        if !self.isSearchMovies {
+            getPopularList()
+            listenerClearSerchText?()
+            return
+        }
+    }
+    
+    func setSearchStatus(_ status : Bool){
+        isSearchMovies = status
+        page = 1
+        validateFilters()
+    }
+    
+    private func validateFilters(){
+        let height = isSearchMovies ? heightClearFilterBtn : 0
+        self.listenerEnableClearButtonFilter?(height)
+        getPaginationMovies()
     }
 }
 

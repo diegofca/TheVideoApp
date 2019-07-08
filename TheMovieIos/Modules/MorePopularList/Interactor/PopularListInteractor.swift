@@ -33,13 +33,25 @@ class PopularListInteractor {
         getPopularListToDb()
     }
     
-    func getPopularListToDb(){
+    func getSearchedList(query: String, success:@escaping ([Movie]) -> Void, failure:@escaping (Error) -> Void){
+        if Connectivity.isConnectedToInternet {
+            serviceManager.requestSearchQuery(query: query, success: { movies in
+                self.saveMovies(movies)
+                success(movies)
+            }) { error in
+                failure(error)
+            }
+            return
+        }
+    }
+    
+    private func getPopularListToDb(){
         if let movies = RealmManager.get.dbAllMovies(), movies.count > 0 {
             delegate?.getMoviesToLocalDb(movies)
         }
     }
     
-    func saveMovies(_ list: [Movie]){
+    private func saveMovies(_ list: [Movie]){
         for nMovie in list {
             let oMovie = realmManager.mapMovieObject(nMovie)
             try! realmManager.realm.write {

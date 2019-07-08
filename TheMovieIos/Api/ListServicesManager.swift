@@ -17,6 +17,11 @@ class ListServicesManager {
     func requestPopularList(page: Int, success:@escaping ([Movie]) -> Void, failure:@escaping (Error) -> Void ){
         services.getListMovies(page: page, typeList: .Popular, success: success, failure: failure)
     }
+    
+    func requestSearchQuery(query: String, success:@escaping ([Movie]) -> Void, failure:@escaping (Error) -> Void ){
+        services.getSearchedMovies(query: query, success: success, failure: failure)
+    }
+    
 }
 
 struct Connectivity {

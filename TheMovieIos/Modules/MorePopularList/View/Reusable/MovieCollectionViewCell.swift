@@ -25,7 +25,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         let urlPathImage = "\(urlSize)\(pathUrl ?? "")"
         guard let url = URL(string: urlPathImage) else { return }
         self.imageView.af_setImage(withURL: url,
-                                   imageTransition: UIImageView.ImageTransition.crossDissolve(0.5) ,
+                                   imageTransition: UIImageView.ImageTransition.crossDissolve(0.3) ,
                                    runImageTransitionIfCached: false) { response in
         }
     }

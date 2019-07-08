@@ -19,6 +19,14 @@ class TheMovieIosTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func testExample() {
+        getMoviesSuccess()
+        getCurrentMovieDetail()
+        getCurrentMovieDetailNulleable()
+        getSearchMoviesSuccessEmpty()
+        getSearchMoviesSuccess()
+    }
+    
     func getMoviesSuccess() {
         let ex = expectation(description: "Success with movies ")
         let service = ListServicesManager.get
@@ -29,6 +37,45 @@ class TheMovieIosTests: XCTestCase {
             ex.fulfill()
             
          }) { (error) in }
+        
+        waitForExpectations(timeout: 10) { (error) in
+            if let error = error {
+                XCTFail("error: \(error)")
+            }
+        }
+    }
+    
+    func getSearchMoviesSuccessEmpty(){
+        let ex = expectation(description: "Success with movies ")
+        let service = ListServicesManager.get
+        let query = "!@#¢∞"
+        
+        service.requestSearchQuery(query: query, success: { list in
+            let listEmpty = list.count > 0 ? false : true
+            XCTAssertTrue(listEmpty)
+            ex.fulfill()
+        }) { error in
+            XCTFail("error: \(error)")
+        }
+        
+        waitForExpectations(timeout: 10) { (error) in
+            if let error = error {
+                XCTFail("error: \(error)")
+            }
+        }
+    }
+    
+    func getSearchMoviesSuccess(){
+        let ex = expectation(description: "Success with movies ")
+        let service = ListServicesManager.get
+        let query = "rambo"
+        
+        service.requestSearchQuery(query: query, success: { list in
+            XCTAssertNotNil(list)
+            ex.fulfill()
+        }) { error in
+            XCTFail("error: \(error)")
+        }
         
         waitForExpectations(timeout: 10) { (error) in
             if let error = error {
@@ -51,12 +98,6 @@ class TheMovieIosTests: XCTestCase {
         
         let movie = dtInteractor.getCurrentMovieDetail(id)
         XCTAssertNil(movie)
-    }
-
-    func testPerformanceExample() {
-        getMoviesSuccess()
-        getCurrentMovieDetail()
-        getCurrentMovieDetailNulleable()
     }
 
 }

@@ -22,9 +22,11 @@ class ListServices {
         
         Alamofire.request(url).responseObject {(response: DataResponse<MovieList>) in
             if response.result.isSuccess {
-                if let nMovie = response.result.value{
-                    success(nMovie.movies)
-                    return
+                if let nMovie = response.result.value {
+                    if let movies = nMovie.movies{
+                        success(movies)
+                        return
+                    }
                 }
                 success([Movie]())
             }
@@ -34,5 +36,28 @@ class ListServices {
             }
         }
     }
+    
+    // trae listado de peliculas dependiendo del query de la busqueda
+    func getSearchedMovies(query: String, success:@escaping ([Movie]) -> Void, failure:@escaping (Error) -> Void?) {
+        guard let queryEncode = query.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed) else { return }
+        let url: String = String(format: MovieEndPoints.getSearchList, queryEncode)
+        
+        Alamofire.request(url).responseObject {(response: DataResponse<MovieList>) in
+            if response.result.isSuccess {
+                if let nMovie = response.result.value {
+                    if let movies = nMovie.movies{
+                        success(movies)
+                        return
+                    }
+                }
+                success([Movie]())
+            }
+            if response.result.isFailure {
+                guard let error = response.result.error else { return }
+                failure(error)
+            }
+        }
+    }
+    
 }
 

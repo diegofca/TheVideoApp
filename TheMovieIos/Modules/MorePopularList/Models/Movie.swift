@@ -65,8 +65,10 @@ class MovieObject: Object {
 // Clase para mapeo de list del objecto MOVIE
 class MovieList : Mappable{
     var movies : [Movie]!
+    var total_results: Int?
     required init?(map: Map) {}
     func mapping(map: Map) {
         movies <- map["results"]
+        total_results <- map["total_results"]
     }
 }

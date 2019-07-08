@@ -7,6 +7,9 @@ import UIKit
 class PopularListViewController: BaseViewController {
     
     @IBOutlet weak var moviesCollection: UICollectionView!
+    @IBOutlet weak var cleanFiltersBtn: UIButton!
+    @IBOutlet weak var cleanFiltersBtnCtr: NSLayoutConstraint!
+
     var searchController : UISearchController!
     
     lazy var presenter: PopularListPresenter = {
@@ -32,21 +35,38 @@ class PopularListViewController: BaseViewController {
         moviesCollection.collectionViewLayout = layout
         
         searchController = creatingSearhBarToTable()
-        searchController.searchBar.scopeButtonTitles = ["Spiderman", "Harry Potter", "Cars", "All"]
+        searchController.searchBar.scopeButtonTitles = ["Spiderman", "Harry Potter", "All"]
         searchController.searchBar.delegate = self
-        
+        searchController.searchBar.showsBookmarkButton = false
         navigationItem.searchController = searchController
+        
+        cleanFiltersBtn.addAction(for: .touchUpInside) {
+            self.presenter.setSearchStatus(false)
+        }
     }
 
     private func initDataListener(){
-        presenter.listenerMovies = { [weak self] movies in
+        presenter.listenerMovies = { [weak self] movies in  // Recibe el listado de peliculas
             guard let strongSelf = self else { return }
             strongSelf.popularMovies = movies
         }
         
-        presenter.listenerError = {  [weak self] error in
+        presenter.listenerError = {  [weak self] error in // Recibe error del servicio
             guard let strongSelf = self else { return }
             strongSelf.alertError(tittle: "Error en la descarga", body: ":c", nil)
+        }
+        
+        presenter.listenerEnableClearButtonFilter = { [weak self] heighCtr in  // Esconde y oculta el boton de limpiar filtros
+            guard let strongSelf = self else { return }
+            strongSelf.cleanFiltersBtnCtr.constant = CGFloat(heighCtr)
+            UIView.animate(withDuration: 0.5, animations: {
+                strongSelf.view.layoutIfNeeded()
+            })
+        }
+        
+        presenter.listenerClearSerchText = { [weak self] in // Limpia el texto de search bar
+            guard let strongSelf = self else { return }
+            strongSelf.searchController.searchBar.text = ""
         }
         
     }
@@ -83,7 +103,7 @@ extension PopularListViewController : UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == popularMovies.count - 1 {
-            presenter.getPopularList()
+            presenter.getPaginationMovies()
         }
     }
     
@@ -92,16 +112,23 @@ extension PopularListViewController : UICollectionViewDelegate, UICollectionView
     }
 }
 
+// Delegados de busqueda
 extension PopularListViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchQuery(searchBar: searchBar)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        guard let queryScope = searchBar.scopeButtonTitles?[selectedScope] else { return }
+        self.presenter.getSearchedMovies(query: queryScope)
+    }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = nil
         searchBar.endEditing(true)
         searchController.dismiss(animated: true, completion: nil)
-//        self.viewModel.filteredMovies.removeAll(keepingCapacity: true)
-//        self.viewModel.activeSearch = false
-//        self.tableMoviesPopular.reloadData()
     }
     
     //Delegado del boton buscar del Searchbar
@@ -109,7 +136,12 @@ extension PopularListViewController : UISearchBarDelegate {
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         searchController.dismiss(animated: true, completion: nil)
-        self.moviesCollection.reloadData()
+        searchQuery(searchBar: searchBar)
+    }
+    
+    private func searchQuery(searchBar: UISearchBar){
+        guard let query = searchBar.text else { return }
+        self.presenter.getSearchedMovies(query: query)
     }
 }
 

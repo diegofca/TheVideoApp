@@ -114,7 +114,7 @@ extension DetailMovieViewController : UITableViewDelegate, UITableViewDataSource
 
                 switch indexPath.row {
                     case 0:
-                        cell.setData("Descripción", movieDetails.overview)
+                        cell.setData("Descripción", movieDetails.overview ?? "")
                     case 1:
                         cell.setData("Votos", String(movieDetails.vote_count ?? 0))
                     case 2:
@@ -125,7 +125,6 @@ extension DetailMovieViewController : UITableViewDelegate, UITableViewDataSource
                 return cell
            
             default:
-               // let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InfoDetailTableViewCell
                 return UITableViewCell()
         }
     }
